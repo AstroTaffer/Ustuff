@@ -41,21 +41,24 @@ namespace acyl
         std::cout << "\033[0m";
     }
 
-    template <typename T>
-    inline void colored_marker(ANSI_text_styles st,
-                               ANSI_colors fg,
-                               ANSI_colors bg,
-                               const T& msg)
+    inline void colored_marker(const char* msg = "...The Net is vast and infinite...",
+                               ANSI_text_styles st = Normal,
+                               ANSI_colors fg = White,
+                               ANSI_colors bg = Black)
     {
         set_style(st, fg, bg);
         std::cout << msg << std::endl;
         reset_style();
     }
 
-    inline void colored_marker()
+    inline void colored_ok(const char* msg)
     {
-        colored_marker(Normal, Cyan, Black,
-                       "...The Net is vast and infinite...");
+        colored_marker(msg, Normal, Green);
+    }
+
+    inline void colored_error(const char* msg)
+    {
+        colored_marker(msg, Normal, Red);
     }
 }
 

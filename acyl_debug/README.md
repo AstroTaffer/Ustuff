@@ -22,7 +22,7 @@ A: People love machines in 2029 A.D.
 
 # API
 
-Use `acyl::colored_marker` in C++ and `acyl_colored_marker` in C as a high-level
+Use `colored_*` functions with `acyl::` namespace in C++ and `acyl_` prefix in C as a high-level
 interface functions to print some colored text on separate terminal lines.
 
 Use `acyl::set_style` with `acyl::reset_style` in C++ and `acyl_set_style` with
@@ -38,7 +38,9 @@ int main()
 {
     acyl::colored_marker();
 
-    acyl::colored_marker(acyl::Blinky, acyl::Yellow, acyl::Red, "WARNING");
+    acyl::colored_marker("C++ API supports default arguments", acyl::Bright);
+
+    acyl::colored_marker("WARNING", acyl::Blinky, acyl::Yellow, acyl::Red);
 
     int foo = 0x1337;
     int bar = 0x7AFF;
@@ -54,9 +56,9 @@ Usage in C (`acyl_debug.h`):
 ```C
 int main()
 {
-    acyl_colored_marker(Normal, Cyan, Black, "...The Net is vast and infinite...");
+    acyl_colored_marker("...The Net is vast and infinite...", Normal, Cyan, Black);
 
-    acyl_colored_marker(Blinky, Yellow, Red, "WARNING");
+    acyl_colored_marker("WARNING", Blinky, Yellow, Red);
 
     int foo = 0x1337;
     int bar = 0x7AFF;
