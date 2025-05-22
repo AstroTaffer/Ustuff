@@ -1,3 +1,11 @@
+/*
+ACYL: Any Color You Like [As Long As It's White]
+A header-only library to colorize your printf() debug days
+
+Upstream version of this library can be found at:
+https://github.com/AstroTaffer/Ustuff/tree/main/acyl_debug
+*/
+
 #ifndef acyl_debug
 #define acyl_debug
 
