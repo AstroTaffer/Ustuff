@@ -26,9 +26,9 @@ namespace acyl
     };
 
 
-    inline void set_style(ANSI_text_styles st,
-                          ANSI_colors fg,
-                          ANSI_colors bg)
+    inline void set_style(ANSI_text_styles st = Normal,
+                          ANSI_colors fg = White,
+                          ANSI_colors bg = Black)
     {
         std::cout << "\033[" << st
                   << ";" << 30 + fg
