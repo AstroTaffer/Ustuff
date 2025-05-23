@@ -50,8 +50,9 @@ static inline void acyl_colored_marker(const char* msg,
                                        enum acyl_ANSI_colors bg)
 {
     acyl_set_style(st, fg, bg);
-    printf("%s\n", msg);
+    fputs(msg, stdout);
     acyl_reset_style();
+    putchar('\n');
 }
 
     inline void acyl_colored_ok(const char* msg)

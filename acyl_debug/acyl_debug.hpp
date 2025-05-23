@@ -55,8 +55,9 @@ namespace acyl
                                ANSI_colors bg = Black)
     {
         set_style(st, fg, bg);
-        std::cout << msg << std::endl;
+        std::cout << msg;
         reset_style();
+        std::cout << std::endl;
     }
 
     inline void colored_ok(const char* msg)
