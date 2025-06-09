@@ -29,11 +29,11 @@ do
 			git status
 			;;
 		fetch)
-			git fetch --prune --all
+			git fetch --prune --all --tags
 			;;
 		pull)
-			git fetch --prune --all
-			git pull
+			git fetch --prune --all --tags
+			git pull --ff-only
 			;;
 		stock)
 			default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
