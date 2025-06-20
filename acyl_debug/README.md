@@ -31,8 +31,6 @@ interface functions to print some colored text on separate terminal lines.
 Use `acyl::set_style` with `acyl::reset_style` in C++ and `acyl_set_style` with
 `acyl_reset_style` in C to gain more fine-level control over output text style.
 
-Some proper examples are included in comments of library header files.
-
 # Examples
 
 Usage in C++ (`acyl_debug.hpp`):
