@@ -1,6 +1,7 @@
 #!/bin/bash
 # Display formatted PC power status
 
+
 # ----- INIT ----- #
 CRESET='\e[m'
 CRED='\e[91m'
@@ -20,6 +21,7 @@ else
     echo "${CRED}"
 fi
 }
+
 
 # ----- GET BATTERY REPORT ----- #
 STATUS=$(cat "${BAT1_PATH}/status")
