@@ -1,94 +1,91 @@
 #!/bin/bash
 # Display formatted PC power status
 
-# TODO:
-# var_names to VAR_NAMES with less abbreviations
-# variables for colors and reset
-# use knowledge of SGR parameters
-# use case esac where appropriate
-# use default case / else with purple coloring
-# if []; then
-# cycle on another line
-# +++ estimated time (if charging - inf)
+# ----- INIT ----- #
+CRESET='\e[m'
+CRED='\e[91m'
+CGREEN='\e[92m'
+CYELLOW='\e[93m'
+CMAGENTA='\e[95m'
 
-bat1_path="/sys/class/power_supply/BAT1"
-cap=$(cat "${bat1_path}/capacity")
-cap_lvl=$(cat "${bat1_path}/capacity_level")
-stat=$(cat "${bat1_path}/status")
-energy_full=$(cat "${bat1_path}/energy_full")
-energy_now=$(cat "${bat1_path}/energy_now")
-energy_flds=$(cat "${bat1_path}/energy_full_design")
-cycle_count=$(cat "${bat1_path}/cycle_count")
+BAT1_PATH='/sys/class/power_supply/BAT1'
+VPC_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00'
 
-if [ "$cap" -gt 75 ]
-then
-    col_cap="\e[0;92m"
-elif [ "$cap" -gt 50 ]
-then
-    col_cap="\e[0;93m"
-elif [ "$cap" -gt 25 ]
-then
-    col_cap="\e[0;33m"
+function color_by_value() {
+if (($1 > 66)); then
+    echo "${CGREEN}"
+elif (($1 > 33)); then
+    echo "${CYELLOW}"
 else
-    col_cap="\e[0;31m"
+    echo "${CRED}"
 fi
+}
 
-if [ "$cap_lvl" == "Full" ]
-then
-    col_cap_lvl="\e[0;92m"
+# ----- GET BATTERY REPORT ----- #
+STATUS=$(cat "${BAT1_PATH}/status")
+case "$STATUS" in
+    "Full")
+        ;&
+    "Charging")
+        STATUS_RES="${CGREEN}"
+        ;;
+    "Discharging")
+        ;&
+    "Not charging")
+        STATUS_RES="${CYELLOW}"
+        ;;
+    *)
+        STATUS_RES="${CMAGENTA}"
+        ;;
+esac
+STATUS_RES="${STATUS_RES}${STATUS}${CRESET}"
+
+CAPACITY=$(cat "${BAT1_PATH}/capacity")
+ENERGY_NOW=$(cat "${BAT1_PATH}/energy_now")
+ENERGY_FULL=$(cat "${BAT1_PATH}/energy_full")
+CAPACITY_RES="$(color_by_value $CAPACITY)${CAPACITY}%${CRESET} \
+(${ENERGY_NOW}/${ENERGY_FULL} mcAh)"
+
+ENERGY_FULL_DESIGN=$(cat "${BAT1_PATH}/energy_full_design")
+CYCLE_COUNT=$(cat "${BAT1_PATH}/cycle_count")
+HEALTH=$((100 * ENERGY_FULL / ENERGY_FULL_DESIGN))
+HEALTH_RES="$(color_by_value $HEALTH)${HEALTH}%${CRESET} \
+(${ENERGY_FULL}/${ENERGY_FULL_DESIGN} mcAh, \
+${CYCLE_COUNT} cycle)"
+
+
+# ----- GET ACPI REPORT ----- #
+CONS_MODE=$(cat "${VPC_PATH}/conservation_mode")
+if [[ ${CONS_MODE} == 1 ]]; then
+    CONS_MODE_RES="${CGREEN}ON"
 else
-    col_cap_lvl="\e[0;35m"
+    CONS_MODE_RES="${CRED}OFF"
 fi
+CONS_MODE_RES="${CONS_MODE_RES}${CRESET}"
 
-if [ "$stat" == "Full" ]
-then
-    col_stat="\e[0;92m"
-elif [ "$stat" == "Discharging" ]
-then
-    col_stat="\e[0;93m"
+CAMERA_POWER=$(cat "${VPC_PATH}/camera_power")
+if [[ ${CAMERA_POWER} == 1 ]]; then
+    CAMERA_POWER_RES="${CGREEN}ON"
 else
-    col_stat="\e[0;35m"
+    CAMERA_POWER_RES="${CRED}OFF"
 fi
+CAMERA_POWER_RES="${CAMERA_POWER_RES}${CRESET}"
 
-health=$((100 * energy_full / energy_flds))
-if [ "$health" -gt 75 ]
-then
-    col_health="\e[0;92m"
-elif [ "$health" -gt 50 ]
-then
-    col_health="\e[0;93m"
-elif [ "$health" -gt 25 ]
-then
-    col_health="\e[0;33m"
-else
-    col_health="\e[0;31m"
-fi
 
-echo -e "Power: ${col_cap}${cap}% (${energy_now}/${energy_full} mcAh)\e[m"
-echo -e "Power level: ${col_cap_lvl}${cap_lvl}\e[m"
-echo -e "Status: ${col_stat}${stat}\e[m"
-echo -e "Health: ${col_health}${health}% (${energy_full}/${energy_flds} mcAh)\e[m, ${cycle_count} cycle"
+# ----- DISPLAY RESULT ----- #
+echo -e "\
+Status: ${STATUS_RES}
+Capacity: ${CAPACITY_RES}
+Health: ${HEALTH_RES}
+
+Conservation mode: ${CONS_MODE_RES}
+Camera power: ${CAMERA_POWER_RES}
+"
 
 exit 0
 
-# status
-#   charging
-#   discharging
 
-# power levels
-#       ? full
-#       normal
-#       ? low
+# TODO:
+# +++ estimated time (if charging - inf)
+# fan mode
 
-# 31 - Dark Red
-# 32 - Dark Green
-# 33 - Dark Yellow
-# 34 - Dark Blue
-# 35 - Dark Pink
-# 36 - Dark Cyan
-# 91 - Light Red
-# 92 - Light Green
-# 93 - Light Yellow
-# 94 - Light Blue
-# 95 - Light Pink
-# 96 - Llight Cyan
