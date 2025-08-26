@@ -9,7 +9,7 @@ ACT_BRIGHT=$(cat "${BACKL_DIR}/actual_brightness")
 
 NEW_BR_VAL=$1
 
-echo -e "Current screen brightness is \e[1;32m${ACT_BRIGHT}\e[m"
+echo -e "Current screen brightness is \e[1;32m${ACT_BRIGHT}/${MAX_BRIGHT}\e[m"
 
 if [[ ${NEW_BR_VAL} == "" ]]; then
     exit
@@ -20,6 +20,6 @@ if (( NEW_BR_VAL > MAX_BRIGHT )) || (( NEW_BR_VAL < 0 )); then
 else
     set -e
     echo ${NEW_BR_VAL} > ${BRIGHT_FD}
-    echo -e "Screen brightness set to \e[1;32m${NEW_BR_VAL}\e[m"
+    echo -e "Screen brightness set to \e[1;32m${NEW_BR_VAL}/${MAX_BRIGHT}\e[m"
 fi
 
