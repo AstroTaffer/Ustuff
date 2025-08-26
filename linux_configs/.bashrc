@@ -14,6 +14,6 @@ UID_COLOR='\e[0;36m'
 PS1="\n\A \[${UID_COLOR}\]\u\[\e[90m\]@\h \[\e[94m\]\w \[${UID_COLOR}\]\\$\[\e[m\] "
 
 # Quick fix to override font problems
-if [[ ${TERM} == 'linux' ]]; then
+if [[ "$TERM" == 'linux' ]]; then
     setfont -d cyr-sun16
 fi
