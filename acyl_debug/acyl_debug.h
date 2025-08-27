@@ -26,7 +26,7 @@ enum acyl_ANSI_colors
     Green,
     Yellow,
     Blue,
-    Purple,
+    Magenta,
     Cyan,
     White
 };

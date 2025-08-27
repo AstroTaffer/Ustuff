@@ -28,7 +28,7 @@ namespace acyl
         Green,
         Yellow,
         Blue,
-        Purple,
+        Magenta,
         Cyan,
         White
     };
