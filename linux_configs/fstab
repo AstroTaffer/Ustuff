@@ -1,0 +1,12 @@
+# /dev/nvme0n1p3 UUID=a9628dd0-7973-425f-a6a3-edb25c6484d3
+LABEL=alroot        	/         	ext4      	rw,relatime	0 1
+
+# /dev/nvme0n1p4 UUID=d5840659-afb4-4605-aa64-fb06f77a8da8
+LABEL=alhome        	/home     	ext4      	rw,relatime	0 2
+
+# /dev/nvme0n1p1 UUID=DFF8-5397
+LABEL=ESP           	/boot     	vfat      	rw,relatime,fmask=0177,dmask=0077,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/nvme0n1p2 UUID=b4b243d2-6d8f-4ff5-b2c0-fc4f518d2781
+LABEL=alswap        	none      	swap      	defaults  	0 0
+
