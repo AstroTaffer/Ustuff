@@ -55,15 +55,15 @@ static inline void acyl_colored_marker(const char* msg,
     putchar('\n');
 }
 
-    inline void acyl_colored_ok(const char* msg)
-    {
-        acyl_colored_marker(msg, Normal, Green, Black);
-    }
+static inline void acyl_colored_ok(const char* msg)
+{
+    acyl_colored_marker(msg, Normal, Green, Black);
+}
 
-    inline void acyl_colored_error(const char* msg)
-    {
-        acyl_colored_marker(msg, Normal, Red, Black);
-    }
+static inline void acyl_colored_error(const char* msg)
+{
+    acyl_colored_marker(msg, Normal, Red, Black);
+}
 
 /*
 Did you know that C doesn't support function overloads?
