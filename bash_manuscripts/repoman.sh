@@ -9,12 +9,12 @@ usage()
 	status	-	git branch + git status
 	fetch	-	git fetch -p --all
 	pull	-	[fetch] + git pull --ff-only
-	goto	-	git checkout
+	switch	-	git switch <branch>
 	clean	-	git clean -dfx + git reset --hard HEAD
 
     Options:
     -p, --path      -   path to working directory (pwd otherwise)
-    -t, --target    -   checkout target for [goto] (default branch otherwise)'
+    -t, --target    -   target <branch> for switch (default branch otherwise)'
 	exit 1
 }
 
@@ -42,7 +42,7 @@ while (( $# > 0 )); do
         --target)
             shift
             if (( $# == 0 )); then
-                echo -e "\e[31m""No goto provided""\e[0m"
+                echo -e "\e[31m""No target provided""\e[0m"
                 exit 1
             else
                 TARGET=$1
@@ -84,13 +84,13 @@ do
 			git fetch -p --all --tags
 			git pull --ff-only
 			;;
-		goto)
+		switch)
             if [[ ${TARGET} == "" ]]; then
-                checkout_target=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+                switch_target=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
             else
-                checkout_target=$TARGET
+                switch_target=$TARGET
             fi
-			git checkout $checkout_target
+			git switch $switch_target
 			;;
 		clean)
 			git clean -dfx
