@@ -69,7 +69,7 @@ cd $WDIR
 
 for repo in */.git
 do
-	echo -e "\n\e[0;36m" "Entering ${repo%/*}:" "\e[0m"
+	echo -e "\n\e[0;36m""Entering ${repo%/*}:""\e[0m"
 	cd $repo/..
 
 	case $REPO_CMD in
@@ -104,5 +104,5 @@ do
 	cd ..
 done
 
-echo -e "\n\e[1;32m" "Done!" "\e[0m"
+echo -e "\n\e[1;32m""Done!""\e[0m"
 
