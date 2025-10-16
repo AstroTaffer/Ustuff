@@ -39,7 +39,7 @@ static inline void acyl_set_style(enum acyl_ANSI_text_styles st,
     fprintf(stderr, "\033[%d;%d;%dm", st, 30 + fg, 40 + bg);
 }
 
-static inline void acyl_reset_style()
+static inline void acyl_reset_style(void)
 {
     fputs("\033[0m", stderr);
 }
@@ -66,8 +66,8 @@ static inline void acyl_colored_error(const char* msg)
 }
 
 /*
-Did you know that C doesn't support function overloads?
-No acyl_colored_marker() for you!
+Did you know that C doesn't support function overloading?
+No acyl_colored_marker(void) for you!
 No default arguments either!
 */
 
