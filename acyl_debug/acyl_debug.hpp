@@ -38,7 +38,7 @@ namespace acyl
                           ANSI_colors fg = White,
                           ANSI_colors bg = Black)
     {
-        std::cout << "\033[" << st
+        std::cerr << "\033[" << st
                   << ";" << 30 + fg
                   << ";" << 40 + bg
                   << "m";
@@ -46,7 +46,7 @@ namespace acyl
 
     inline void reset_style()
     {
-        std::cout << "\033[0m";
+        std::cerr << "\033[0m";
     }
 
     inline void colored_marker(const char* msg = "...The Net is vast and infinite...",
@@ -55,9 +55,9 @@ namespace acyl
                                ANSI_colors bg = Black)
     {
         set_style(st, fg, bg);
-        std::cout << msg;
+        std::cerr << msg;
         reset_style();
-        std::cout << std::endl;
+        std::cerr << '\n';
     }
 
     inline void colored_ok(const char* msg)

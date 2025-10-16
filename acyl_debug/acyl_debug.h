@@ -36,12 +36,12 @@ static inline void acyl_set_style(enum acyl_ANSI_text_styles st,
                                   enum acyl_ANSI_colors fg,
                                   enum acyl_ANSI_colors bg)
 {
-    printf("\033[%d;%d;%dm", st, 30 + fg, 40 + bg);
+    fprintf(stderr, "\033[%d;%d;%dm", st, 30 + fg, 40 + bg);
 }
 
 static inline void acyl_reset_style()
 {
-    printf("\033[0m");
+    fputs("\033[0m", stderr);
 }
 
 static inline void acyl_colored_marker(const char* msg,
@@ -50,9 +50,9 @@ static inline void acyl_colored_marker(const char* msg,
                                        enum acyl_ANSI_colors bg)
 {
     acyl_set_style(st, fg, bg);
-    fputs(msg, stdout);
+    fputs(msg, stderr);
     acyl_reset_style();
-    putchar('\n');
+    fputc('\n', stderr);
 }
 
 static inline void acyl_colored_ok(const char* msg)
