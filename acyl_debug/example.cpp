@@ -1,0 +1,18 @@
+#include "acyl_debug.hpp"
+
+int main()
+{
+    acyl::colored_marker("...The Net is vast and infinite...", acyl::Normal, acyl::Cyan, acyl::Black);
+
+    acyl::colored_marker("C++ API supports default arguments", acyl::Bright);
+
+    acyl::colored_marker("WARNING", acyl::Blinky, acyl::Yellow, acyl::Red);
+
+    int foo = 0x1337;
+    int bar = 0x7AFF;
+    acyl::set_style(acyl::Normal, acyl::Magenta, acyl::Blue);
+    std::cout << "foo = " << foo << ", bar = " << bar << std::endl;
+    acyl::reset_style();
+
+    return 0;
+}

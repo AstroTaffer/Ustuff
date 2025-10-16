@@ -33,40 +33,5 @@ Use `acyl::set_style` with `acyl::reset_style` in C++ and `acyl_set_style` with
 
 # Examples
 
-Usage in C++ (`acyl_debug.hpp`):
-```C++
-int main()
-{
-    acyl::colored_marker();
-
-    acyl::colored_marker("C++ API supports default arguments", acyl::Bright);
-
-    acyl::colored_marker("WARNING", acyl::Blinky, acyl::Yellow, acyl::Red);
-
-    int foo = 0x1337;
-    int bar = 0x7AFF;
-    acyl::set_style(acyl::Bright, acyl::Cyan, acyl::Blue);
-    std::cout << "foo = " << foo << ", bar = " << bar << std::endl;
-    acyl::reset_style();
-
-    return 0;
-}
-```
-
-Usage in C (`acyl_debug.h`):
-```C
-int main()
-{
-    acyl_colored_marker("...The Net is vast and infinite...", Normal, Cyan, Black);
-
-    acyl_colored_marker("WARNING", Blinky, Yellow, Red);
-
-    int foo = 0x1337;
-    int bar = 0x7AFF;
-    acyl_set_style(Bright, Cyan, Blue);
-    printf("foo = %d, bar = %d\n", foo, bar);
-    acyl_reset_style();
-
-    return 0;
-}
-```
+See `example.cpp` and `example.c` for usage examples in C++ and C respectively.
+Build them with `make clean all` for a quick test.
