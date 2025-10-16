@@ -34,13 +34,13 @@ namespace acyl
     };
 
 
-    inline void set_style(ANSI_text_styles st = Normal,
-                          ANSI_colors fg = White,
-                          ANSI_colors bg = Black)
+    inline void set_style(ANSI_text_styles t_st = Normal,
+                          ANSI_colors t_fg = White,
+                          ANSI_colors t_bg = Black)
     {
-        std::cerr << "\033[" << st
-                  << ";" << 30 + fg
-                  << ";" << 40 + bg
+        std::cerr << "\033[" << t_st
+                  << ";" << 30 + t_fg
+                  << ";" << 40 + t_bg
                   << "m";
     }
 
@@ -49,25 +49,25 @@ namespace acyl
         std::cerr << "\033[0m";
     }
 
-    inline void colored_marker(const char* msg = "...The Net is vast and infinite...",
-                               ANSI_text_styles st = Normal,
-                               ANSI_colors fg = White,
-                               ANSI_colors bg = Black)
+    inline void colored_marker(const char* t_msg = "...The Net is vast and infinite...",
+                               ANSI_text_styles t_st = Normal,
+                               ANSI_colors t_fg = White,
+                               ANSI_colors t_bg = Black)
     {
-        set_style(st, fg, bg);
-        std::cerr << msg;
+        set_style(t_st, t_fg, t_bg);
+        std::cerr << t_msg;
         reset_style();
         std::cerr << '\n';
     }
 
-    inline void colored_ok(const char* msg)
+    inline void colored_ok(const char* t_msg)
     {
-        colored_marker(msg, Normal, Green);
+        colored_marker(t_msg, Normal, Green);
     }
 
-    inline void colored_error(const char* msg)
+    inline void colored_error(const char* t_msg)
     {
-        colored_marker(msg, Normal, Red);
+        colored_marker(t_msg, Normal, Red);
     }
 }
 

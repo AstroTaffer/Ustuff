@@ -32,11 +32,11 @@ enum acyl_ANSI_colors
 };
 
 
-static inline void acyl_set_style(enum acyl_ANSI_text_styles st,
-                                  enum acyl_ANSI_colors fg,
-                                  enum acyl_ANSI_colors bg)
+static inline void acyl_set_style(enum acyl_ANSI_text_styles t_st,
+                                  enum acyl_ANSI_colors t_fg,
+                                  enum acyl_ANSI_colors t_bg)
 {
-    fprintf(stderr, "\033[%d;%d;%dm", st, 30 + fg, 40 + bg);
+    fprintf(stderr, "\033[%d;%d;%dm", t_st, 30 + t_fg, 40 + t_bg);
 }
 
 static inline void acyl_reset_style(void)
@@ -44,25 +44,25 @@ static inline void acyl_reset_style(void)
     fputs("\033[0m", stderr);
 }
 
-static inline void acyl_colored_marker(const char* msg,
-                                       enum acyl_ANSI_text_styles st,
-                                       enum acyl_ANSI_colors fg,
-                                       enum acyl_ANSI_colors bg)
+static inline void acyl_colored_marker(const char* t_msg,
+                                       enum acyl_ANSI_text_styles t_st,
+                                       enum acyl_ANSI_colors t_fg,
+                                       enum acyl_ANSI_colors t_bg)
 {
-    acyl_set_style(st, fg, bg);
-    fputs(msg, stderr);
+    acyl_set_style(t_st, t_fg, t_bg);
+    fputs(t_msg, stderr);
     acyl_reset_style();
     fputc('\n', stderr);
 }
 
-static inline void acyl_colored_ok(const char* msg)
+static inline void acyl_colored_ok(const char* t_msg)
 {
-    acyl_colored_marker(msg, Normal, Green, Black);
+    acyl_colored_marker(t_msg, Normal, Green, Black);
 }
 
-static inline void acyl_colored_error(const char* msg)
+static inline void acyl_colored_error(const char* t_msg)
 {
-    acyl_colored_marker(msg, Normal, Red, Black);
+    acyl_colored_marker(t_msg, Normal, Red, Black);
 }
 
 /*
