@@ -81,8 +81,7 @@ do
 			git fetch -p --all --tags
 			;;
 		pull)
-			git fetch -p --all --tags
-			git pull --ff-only
+			git pull -p --all --tags --ff-only
 			;;
 		switch)
             if [[ ${TARGET} == "" ]]; then
