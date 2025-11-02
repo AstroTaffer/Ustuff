@@ -73,6 +73,7 @@ CONS_MODE_RES="$(res_from_toggle $CONS_MODE)"
 CAMERA_POWER=$(cat "${VPC_PATH}/camera_power")
 CAMERA_POWER_RES="$(res_from_toggle $CAMERA_POWER)"
 
+FAN_MODE=$(cat "${VPC_PATH}/fan_mode")
 
 # ----- DISPLAY RESULT ----- #
 echo -e "\
@@ -82,12 +83,13 @@ Health: ${HEALTH_RES}
 
 Conservation mode: ${CONS_MODE_RES}
 Camera power: ${CAMERA_POWER_RES}
+Fan mode: ${FAN_MODE}
 "
 
 exit 0
 
+# "Fan mode" does not show changes on LOQ 15IRX9
 
 # TODO:
 # +++ estimated time (if charging - inf)
-# fan mode
 
