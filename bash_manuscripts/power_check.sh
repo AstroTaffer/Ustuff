@@ -94,7 +94,7 @@ Health: ${HEALTH_RES}
 
 Conservation mode: ${CONS_MODE_RES}
 Camera power: ${CAMERA_POWER_RES}
-Fan mode: ${FAN_MODE}
+Fan mode: ${FAN_MODE}\
 "
 
 exit 0
