@@ -58,6 +58,16 @@ ENERGY_FULL=$(cat "${BAT1_PATH}/energy_full")
 CAPACITY_RES="$(color_from_percentage $CAPACITY)${CAPACITY}%${CRESET} \
 (${ENERGY_NOW}/${ENERGY_FULL} mcAh)"
 
+POWER_NOW=$(cat "${BAT1_PATH}/power_now")
+if [[ $STATUS == "Discharging" ]]; then
+    DISCHARGE_TIME=$(awk "BEGIN{print ${ENERGY_NOW}/${POWER_NOW}}")
+    HOURS=${DISCHARGE_TIME%.*}
+    MINUTES=$(awk "BEGIN{print $DISCHARGE_TIME % 1 * 60}")
+    DISCHARGE_TIME_RES="${CYELLOW}${HOURS}h ${MINUTES%.*}m${CRESET}"
+else
+    DISCHARGE_TIME_RES="--"
+fi
+
 ENERGY_FULL_DESIGN=$(cat "${BAT1_PATH}/energy_full_design")
 CYCLE_COUNT=$(cat "${BAT1_PATH}/cycle_count")
 HEALTH=$((100 * ENERGY_FULL / ENERGY_FULL_DESIGN))
@@ -79,6 +89,7 @@ FAN_MODE=$(cat "${VPC_PATH}/fan_mode")
 echo -e "\
 Status: ${STATUS_RES}
 Capacity: ${CAPACITY_RES}
+Discharge time: ${DISCHARGE_TIME_RES}
 Health: ${HEALTH_RES}
 
 Conservation mode: ${CONS_MODE_RES}
@@ -89,7 +100,4 @@ Fan mode: ${FAN_MODE}
 exit 0
 
 # "Fan mode" does not show changes on LOQ 15IRX9
-
-# TODO:
-# +++ estimated time (if charging - inf)
 
