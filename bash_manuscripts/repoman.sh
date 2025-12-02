@@ -7,14 +7,14 @@ usage()
 
     REPO_CMDs:
 	status	-	git branch + git status
-	fetch	-	git fetch -p --all
-	pull	-	[fetch] + git pull --ff-only
+	fetch	-	git fetch -pt
+	pull	-	git pull -pt --ff-only
 	switch	-	git switch <branch>
 	clean	-	git clean -dfx + git reset --hard HEAD
 
     Options:
-    -p, --path      -   path to working directory (pwd otherwise)
-    -t, --target    -   target <branch> for switch (default branch otherwise)'
+    -p, --path      -   path to working directory (cwd by default)
+    -t, --target    -   target <branch> for switch (origin/HEAD branch by default)'
 	exit 1
 }
 
