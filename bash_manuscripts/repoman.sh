@@ -78,10 +78,10 @@ do
 			git status
 			;;
 		fetch)
-			git fetch -p --all --tags
+			git fetch -pt
 			;;
 		pull)
-			git pull -p --all --tags --ff-only
+			git pull -pt --ff-only
 			;;
 		switch)
             if [[ ${TARGET} == "" ]]; then
