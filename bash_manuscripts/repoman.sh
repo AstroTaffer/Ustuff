@@ -3,19 +3,19 @@
 
 usage()
 {
-	echo 'Execute REPO_CMD command in every subdirectory that is a Git repository (non-recursive)
+    echo 'Execute REPO_CMD command in every subdirectory that is a Git repository (non-recursive)
 
     REPO_CMDs:
-	status	-	git branch + git status
-	fetch	-	git fetch -pt
-	pull	-	git pull -pt --ff-only
-	switch	-	git switch <branch>
-	clean	-	git clean -dfx + git reset --hard HEAD
+    status  -    git branch + git status
+    fetch   -    git fetch -pt
+    pull    -    git pull -pt --ff-only
+    switch  -    git switch <branch>
+    clean   -    git clean -dfx + git reset --hard HEAD
 
     Options:
     -p, --path      -   path to working directory (cwd by default)
     -t, --target    -   target <branch> for switch (origin/HEAD branch by default)'
-	exit 1
+    exit 1
 }
 
 
@@ -69,38 +69,38 @@ cd $WDIR
 
 for repo in */.git
 do
-	echo -e "\n\e[0;36m""Entering ${repo%/*}:""\e[0m"
-	cd $repo/..
+    echo -e "\n\e[0;36m""Entering ${repo%/*}:""\e[0m"
+    cd $repo/..
 
-	case $REPO_CMD in
-		status)
-			git branch
-			git status
-			;;
-		fetch)
-			git fetch -pt
-			;;
-		pull)
-			git pull -pt --ff-only
-			;;
-		switch)
+    case $REPO_CMD in
+        status)
+            git branch
+            git status
+            ;;
+        fetch)
+            git fetch -pt
+            ;;
+        pull)
+            git pull -pt --ff-only
+            ;;
+        switch)
             if [[ ${TARGET} == "" ]]; then
                 switch_target=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
             else
                 switch_target=$TARGET
             fi
-			git switch $switch_target
-			;;
-		clean)
-			git clean -dfx
-			git reset --hard HEAD
-			;;
+            git switch $switch_target
+            ;;
+        clean)
+            git clean -dfx
+            git reset --hard HEAD
+            ;;
         *)
             echo -e "\e[31m""Invalid command""\e[0m"
             exit 1
-	esac
+    esac
 
-	cd ..
+    cd ..
 done
 
 echo -e "\n\e[1;32m""Done!""\e[0m"
