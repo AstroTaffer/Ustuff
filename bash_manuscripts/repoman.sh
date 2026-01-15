@@ -9,12 +9,11 @@ usage()
     status  -    git branch + git status
     fetch   -    git fetch -pt
     pull    -    git pull -pt --ff-only
-    switch  -    git switch <branch>
+    switch <branch>  -    git switch <branch> (origin/HEAD branch by default)
     clean   -    git clean -dfx + git reset --hard HEAD
 
     Options:
-    -p, --path      -   path to working directory (cwd by default)
-    -t, --target    -   target <branch> for switch (origin/HEAD branch by default)'
+    -p, --path      -   path to working directory (cwd by default)'
     exit 1
 }
 
@@ -37,22 +36,13 @@ while (( $# > 0 )); do
                 WDIR=$1
             fi
             ;;
-        -t)
-            ;&
-        --target)
-            shift
-            if (( $# == 0 )); then
-                echo -e "\e[31m""No target provided""\e[0m"
-                exit 1
-            else
-                TARGET=$1
-            fi
-            ;;
         *)
             if [[ ${REPO_CMD} == "" ]]; then
                 REPO_CMD=$1
+            elif [[ ${REPO_CMD} == "switch" && ${TARGET} == "" ]]; then
+                TARGET=$1
             else
-                echo -e "\e[31m""Too much REPO_CMDs""\e[0m"
+                echo -e "\e[31m""Invalid syntax""\e[0m"
                 exit 1
             fi
             ;;
@@ -104,4 +94,3 @@ do
 done
 
 echo -e "\n\e[1;32m""Done!""\e[0m"
-
