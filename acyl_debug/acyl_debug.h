@@ -32,9 +32,11 @@ enum acyl_ANSI_colors
 };
 
 
-static inline void acyl_set_style(enum acyl_ANSI_text_styles t_st,
-                                  enum acyl_ANSI_colors t_fg,
-                                  enum acyl_ANSI_colors t_bg)
+static inline void acyl_set_style(
+    enum acyl_ANSI_text_styles t_st,
+    enum acyl_ANSI_colors t_fg,
+    enum acyl_ANSI_colors t_bg
+)
 {
     fprintf(stderr, "\033[%d;%d;%dm", t_st, 30 + t_fg, 40 + t_bg);
 }
@@ -44,10 +46,12 @@ static inline void acyl_reset_style(void)
     fputs("\033[0m", stderr);
 }
 
-static inline void acyl_colored_marker(const char* t_msg,
-                                       enum acyl_ANSI_text_styles t_st,
-                                       enum acyl_ANSI_colors t_fg,
-                                       enum acyl_ANSI_colors t_bg)
+static inline void acyl_colored_marker(
+    const char* t_msg,
+    enum acyl_ANSI_text_styles t_st,
+    enum acyl_ANSI_colors t_fg,
+    enum acyl_ANSI_colors t_bg
+)
 {
     acyl_set_style(t_st, t_fg, t_bg);
     fputs(t_msg, stderr);

@@ -34,9 +34,11 @@ namespace acyl
     };
 
 
-    inline void set_style(ANSI_text_styles t_st = Normal,
-                          ANSI_colors t_fg = White,
-                          ANSI_colors t_bg = Black)
+    inline void set_style(
+        ANSI_text_styles t_st = Normal,
+        ANSI_colors t_fg = White,
+        ANSI_colors t_bg = Black
+    )
     {
         std::cerr << "\033[" << t_st
                   << ";" << 30 + t_fg
@@ -49,10 +51,12 @@ namespace acyl
         std::cerr << "\033[0m";
     }
 
-    inline void colored_marker(const char* t_msg = "ACYL marker",
-                               ANSI_text_styles t_st = Normal,
-                               ANSI_colors t_fg = White,
-                               ANSI_colors t_bg = Black)
+    inline void colored_marker(
+        const char* t_msg = "ACYL marker",
+        ANSI_text_styles t_st = Normal,
+        ANSI_colors t_fg = White,
+        ANSI_colors t_bg = Black
+    )
     {
         set_style(t_st, t_fg, t_bg);
         std::cerr << t_msg;
