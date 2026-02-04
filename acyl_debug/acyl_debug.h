@@ -14,9 +14,12 @@ https://github.com/AstroTaffer/Ustuff/tree/main/acyl_debug
 
 enum acyl_ANSI_text_styles
 {
-    Normal,
-    Bright,
-    Blinky = 5
+    Normal    = 0,
+    Bright    = 1,
+    Dim       = 2,
+    Underline = 4,
+    Blinky    = 5,
+    Strikeout = 9
 };
 
 enum acyl_ANSI_colors
