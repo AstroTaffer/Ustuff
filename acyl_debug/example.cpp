@@ -6,6 +6,13 @@ int main()
 
     acyl::colored_marker("C++ API supports default arguments", acyl::Bright);
 
+    acyl::show_output() = true;
+    if (acyl::show_output())
+    {
+        acyl::colored_ok("C++ API has global flag for conditional output");
+    }
+    acyl::show_output() = false;
+
     acyl::colored_marker("WARNING", acyl::Blinky, acyl::Yellow, acyl::Red);
 
     int foo = 0x1337;

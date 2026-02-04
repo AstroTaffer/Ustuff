@@ -33,6 +33,11 @@ namespace acyl
         White
     };
 
+    inline bool& show_output()
+    {
+        static bool show = false;
+        return show;
+    }
 
     inline void set_style(
         ANSI_text_styles t_st = Normal,
