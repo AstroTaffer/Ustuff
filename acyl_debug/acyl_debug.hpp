@@ -72,12 +72,12 @@ namespace acyl
         std::cerr << '\n';
     }
 
-    inline void colored_ok(const char* t_msg)
+    inline void colored_ok(const char* t_msg = "ACYL ok")
     {
         colored_marker(t_msg, Normal, Green);
     }
 
-    inline void colored_error(const char* t_msg)
+    inline void colored_error(const char* t_msg = "ACYL error")
     {
         colored_marker(t_msg, Normal, Red);
     }
