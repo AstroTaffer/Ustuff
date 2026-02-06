@@ -14,12 +14,12 @@ https://github.com/AstroTaffer/Ustuff/tree/main/acyl_debug
 
 enum acyl_ANSI_text_styles
 {
-    Normal    = 0,
-    Bright    = 1,
-    Dim       = 2,
-    Underline = 4,
-    Blinky    = 5,
-    Strikeout = 9
+    Default    = 0,
+    Bold       = 1,
+    Faint      = 2,
+    Underlined = 4,
+    Blinking   = 5,
+    CrossedOut = 9
 };
 
 enum acyl_ANSI_colors
@@ -64,12 +64,12 @@ static inline void acyl_colored_marker(
 
 static inline void acyl_colored_ok(const char* t_msg)
 {
-    acyl_colored_marker(t_msg, Normal, Green, Black);
+    acyl_colored_marker(t_msg, Default, Green, Black);
 }
 
 static inline void acyl_colored_error(const char* t_msg)
 {
-    acyl_colored_marker(t_msg, Normal, Red, Black);
+    acyl_colored_marker(t_msg, Default, Red, Black);
 }
 
 /*

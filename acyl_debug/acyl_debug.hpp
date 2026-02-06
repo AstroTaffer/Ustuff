@@ -16,12 +16,12 @@ namespace acyl
 {
     enum ANSI_text_styles
     {
-        Normal    = 0,
-        Bright    = 1,
-        Dim       = 2,
-        Underline = 4,
-        Blinky    = 5,
-        Strikeout = 9
+        Default    = 0,
+        Bold       = 1,
+        Faint      = 2,
+        Underlined = 4,
+        Blinking   = 5,
+        CrossedOut = 9
     };
 
     enum ANSI_colors
@@ -43,7 +43,7 @@ namespace acyl
     }
 
     inline void set_style(
-        ANSI_text_styles t_st = Normal,
+        ANSI_text_styles t_st = Default,
         ANSI_colors t_fg = White,
         ANSI_colors t_bg = Black
     )
@@ -61,7 +61,7 @@ namespace acyl
 
     inline void colored_marker(
         const char* t_msg = "ACYL marker",
-        ANSI_text_styles t_st = Normal,
+        ANSI_text_styles t_st = Default,
         ANSI_colors t_fg = White,
         ANSI_colors t_bg = Black
     )
@@ -74,12 +74,12 @@ namespace acyl
 
     inline void colored_ok(const char* t_msg = "ACYL ok")
     {
-        colored_marker(t_msg, Normal, Green);
+        colored_marker(t_msg, Default, Green);
     }
 
     inline void colored_error(const char* t_msg = "ACYL error")
     {
-        colored_marker(t_msg, Normal, Red);
+        colored_marker(t_msg, Default, Red);
     }
 }
 
